@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Camellia QR Menu</title>
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: "Arial", "Noto Sans KR", sans-serif;
+      background: url("bg.png") center/cover no-repeat;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 420px;
+      text-align: center;
+    }
+
+    .title-img {
+      width: 100%;
+      margin-bottom: 30px;
+    }
+
+    .buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .btn {
+      padding: 16px;
+      border-radius: 14px;
+      border: none;
+      font-size: 18px;
+      font-weight: 700;
+      cursor: pointer;
+      background: rgba(255,255,255,0.85);
+      box-shadow: 0 6px 14px rgba(0,0,0,0.15);
+      transition: 0.2s;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    }
+
+    
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- 제목 이미지 -->
+    <img src="title.png" alt="까멜리아" class="title-img" />
+
+    <!-- 언어 버튼 -->
+    <div class="buttons">
+      <button class="btn"}]}>English</button>
+      <button class="btn">繁體中文</button>
+      <button class="btn">日本語</button>
+    </div>
+  </div>
+</body>
+</html>
