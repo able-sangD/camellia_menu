@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Camellia 繁體中文菜單</title>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+
+body{
+  font-family:Arial,"Microsoft JhengHei","Noto Sans TC",sans-serif;
+  background:url("bg.png") center/cover no-repeat fixed;
+  color:#221c17;
+}
+
+.page{max-width:460px;margin:auto;padding:18px 14px 44px;}
+
+.topbar{
+  display:flex;justify-content:space-between;gap:10px;
+  margin-bottom:14px;position:sticky;top:10px;z-index:99;
+}
+
+.btn{
+  border:none;padding:12px 16px;border-radius:999px;
+  font-weight:800;cursor:pointer;background:white;
+  box-shadow:0 8px 18px rgba(0,0,0,.12);
+}
+
+.complete{background:#a92f2d;color:#fff;}
+
+.card{
+  background:rgba(255,255,255,.84);
+  padding:16px;border-radius:22px;margin-bottom:14px;
+  box-shadow:0 12px 24px rgba(0,0,0,.08);
+}
+
+.brand{text-align:center;font-weight:800;margin-bottom:10px;}
+h1{font-size:34px;text-align:center;margin-bottom:8px;}
+.sub{font-size:14px;text-align:center;line-height:1.5;opacity:.8;}
+
+.section-head{
+  display:flex;justify-content:space-between;gap:10px;
+  margin-bottom:10px;padding-bottom:10px;
+  border-bottom:1px solid rgba(0,0,0,.08);
+}
+
+.section-title{font-size:24px;font-weight:800;}
+
+.badge{
+  background:#a92f2d;color:#fff;padding:6px 10px;
+  border-radius:999px;font-size:12px;font-weight:800;
+  white-space:nowrap;
+}
+
+.item{padding:14px 0;border-bottom:1px dashed rgba(0,0,0,.1);}
+.item:last-child{border-bottom:none;}
+
+.row{display:flex;justify-content:space-between;gap:12px;}
+.name{font-size:21px;font-weight:800;line-height:1.18;}
+.price{font-size:18px;font-weight:800;white-space:nowrap;text-align:right;}
+.price small{display:block;font-size:11px;opacity:.7;margin-top:3px;}
+.desc{font-size:13px;opacity:.75;margin-top:5px;line-height:1.45;}
+
+.controls{
+  display:flex;justify-content:space-between;align-items:center;
+  margin-top:12px;gap:10px;flex-wrap:wrap;
+}
+
+.temp-group,.qty-group{display:flex;gap:8px;align-items:center;}
+
+.temp-btn,.qty-btn{
+  border:none;padding:8px 12px;border-radius:999px;
+  cursor:pointer;font-weight:800;background:#fff;
+  box-shadow:0 4px 10px rgba(0,0,0,.08);
+}
+
+.temp-btn.active{background:#a92f2d;color:#fff;}
+.temp-btn.disabled{opacity:.35;pointer-events:none;}
+
+.qty-btn{width:32px;height:32px;padding:0;font-size:18px;}
+.qty{min-width:24px;text-align:center;font-weight:800;}
+
+.summary-title{font-size:22px;font-weight:800;margin-bottom:10px;}
+
+.summary-item{
+  background:#fff;border-radius:14px;
+  padding:12px;margin-top:10px;
+}
+
+.summary-item strong{display:block;font-size:18px;margin-bottom:5px;}
+.summary-item span{display:block;font-size:14px;line-height:1.45;opacity:.82;}
+
+.empty{font-size:14px;opacity:.7;text-align:center;padding:20px;}
+</style>
+</head>
+
+<body>
+<main class="page">
+
+<div class="topbar">
+  <button class="btn" onclick="location.href='index.html'">← 首頁</button>
+  <button class="btn complete" id="completeBtn">完成</button>
+</div>
+
+<section class="card">
+  <div class="brand">🌺 까멜리아 CAMELLIA 🌺</div>
+  <h1>菜單</h1>
+  <div class="sub">請選擇數量 / 熱飲 / 冰飲<br>按完成後出示給店員</div>
+</section>
+
+<!-- Coffee -->
+<section class="card">
+  <div class="section-head">
+    <div class="section-title">咖啡</div>
+    <div class="badge">熱 · 冰</div>
+  </div>
+
+  <div class="item" data-ko="아메리카노 1샷">
+    <div class="row"><div class="name">美式咖啡 正常-1份</div><div class="price">4.5</div></div>
+    <div class="controls"><div class="temp-group"><button class="temp-btn active" data-temp="ICE">冰</button><button class="temp-btn" data-temp="HOT">熱</button></div><div class="qty-group"><button class="qty-btn minus">−</button><div class="qty">0</div><button class="qty-btn plus">+</button></div></div>
+  </div>
+
+  <div class="item" data-ko="아메리카노 2샷">
+    <div class="row"><div class="name">美式咖啡 濃郁-2份</div><div class="price">4.5</div></div>
+    <div class="controls"><div class="temp-group"><button class="temp-btn active" data-temp="ICE">冰</button><button class="temp-btn" data-temp="HOT">熱</button></div><div class="qty-group"><button class="qty-btn minus">−</button><div class="qty">0</div><button class="qty-btn plus">+</button></div></div>
+  </div>
+
+  <div class="item" data-ko="카페라떼">
+    <div class="row"><div class="name">拿鐵咖啡</div><div class="price">5.5</div></div>
+    <div class="controls"><div class="temp-group"><button class="temp-btn active" data-temp="ICE">冰</button><button class="temp-btn" data-temp="HOT">熱</button></div><div class="qty-group"><button class="qty-btn minus">−</button><div class="qty">0</div><button class="qty-btn plus">+</button></div></div>
+  </div>
+
+  <div class="item" data-ko="카푸치노">
+    <div class="row"><div class="name">卡布奇諾</div><div class="price">5.5<small>僅熱飲</small></div></div>
+    <div class="controls"><div class="temp-group"><button class="temp-btn active" data-temp="HOT">熱</button><button class="temp-btn disabled" data-temp="ICE">冰</button></div><div class="qty-group"><button class="qty-btn minus">−</button><div class="qty">0</div><button class="qty-btn plus">+</button></div></div>
+  </div>
+
+  <div class="item" data-ko="카페모카">
+    <div class="row"><div class="name">摩卡咖啡</div><div class="price">6.0</div></div>
+    <div class="controls"><div class="temp-group"><button class="temp-btn active" data-temp="ICE">冰</button><button class="temp-btn" data-temp="HOT">熱</button></div><div class="qty-group"><button class="qty-btn minus">−</button><div class="qty">0</div><button class="qty-btn plus">+</button></div></div>
+  </div>
+
+  <div class="item" data-ko="돌체라떼">
+    <div class="row"><div class="name">甜菜拿鐵</div><div class="price">6.0</div></div>
+    <div class="controls"><div class="temp-group"><button class="temp-btn active" data-temp="ICE">冰</button><button class="temp-btn" data-temp="HOT">熱</button></div><div class="qty-group"><button class="qty-btn minus">−</button><div class="qty">0</div><button class="qty-btn plus">+</button></div></div>
+  </div>
+
+  <div class="item" data-ko="바닐라라떼">
+    <div class="row"><div class="name">香草拿鐵</div><div class="price">6.0</div></div>
+    <div class="controls"><div class="temp-group"><button class="temp-btn active" data-temp="ICE">冰</button><button class="temp-btn" data-temp="HOT">熱</button></div><div class="qty-group"><button class="qty-btn minus">−</button><div class="qty">0</div><button class="qty-btn plus">+</button></div></div>
+  </div>
+
+  <div class="item" data-ko="카라멜마끼아또">
+    <div class="row"><div class="name">焦糖瑪奇朵</div><div class="price">6.0</div></div>
+    <div class="controls"><div class="temp-group"><button class="temp-btn active" data-temp="ICE">冰</button><button class="temp-btn" data-temp="HOT">熱</button></div><div class="qty-group"><button class="qty-btn minus">−</button><div class="qty">0</div><button class="qty-btn plus">+</button></div></div>
+  </div>
+</section>
+
+<!-- Signature -->
+<section class="card">
+  <div class="section-head">
+    <div class="section-title">招牌菜單</div>
+    <div class="badge">BEST</div>
+  </div>
+
+  <div class="item" data-ko="까멜리아 슈페너">
+    <div class="row"><div><div class="name">山茶花奶油咖啡</div></div><div class="price">6.5</div></div>
+    <div class="controls"><div class="temp-group"><button class="temp-btn active" data-temp="ICE">冰</button><button class="temp-btn" data-temp="HOT">熱</button></div><div class="qty-group"><button class="qty-btn minus">−</button><div class="qty">0</div><button class="qty-btn plus">+</button></div></div>
+  </div>
+
+  <div class="item" data-ko="동백 카페라떼">
+    <div class="row"><div><div class="name">冬柏白拿鐵咖啡</div></div><div class="price">6.5</div></div>
+    <div class="controls"><div class="temp-group"><button class="temp-btn active" data-temp="ICE">冰</button><button class="temp-btn" data-temp="HOT">熱</button></div><div class="qty-group"><button class="qty-btn minus">−</button><div class="qty">0</div><button class="qty-btn plus">+</button></div></div>
+  </div>
+
+  <div class="item" data-ko="용식이 촌므파탈라떼">
+    <div class="row"><div><div class="name">龍植奶杏仁拿鐵咖啡</div></div><div class="price">6.5</div></div>
+    <div class="controls"><div class="temp-group"><button class="temp-btn active" data-temp="ICE">冰</button><button class="temp-btn" data-temp="HOT">熱</button></div><div class="qty-group"><button class="qty-btn minus">−</button><div class="qty">0</div><button class="qty-btn plus">+</button></div></div>
+  </div>
+
+  <div class="item" data-ko="노규태 노땅콩라떼">
+    <div class="row"><div><div class="name">盧圭泰的花生拿鐵咖啡</div></div><div class="price">6.5</div></div>
+    <div class="controls"><div class="temp-group"><button class="temp-btn active" data-temp="ICE">冰</button><button class="temp-btn" data-temp="HOT">熱</button></div><div class="qty-group"><button class="qty-btn minus">−</button><div class="qty">0</div><button class="qty-btn plus">+</button></div></div>
+  </div>
+
+  <div class="item" data-ko="홍자영 컬크러쉬라떼">
+    <div class="row"><div><div class="name">洪子英的焦糖拿鐵咖啡</div></div><div class="price">6.5<small>僅冰飲</small></div></div>
+    <div class="controls"><div class="temp-group"><button class="temp-btn disabled" data-temp="HOT">熱</button><button class="temp-btn active" data-temp="ICE">冰</button></div><div class="qty-group"><button class="qty-btn minus">−</button><div class="qty">0</div><button class="qty-btn plus">+</button></div></div>
+  </div>
+
+  <div class="item" data-ko="달고나 크림라떼">
+    <div class="row"><div><div class="name">糖餅奶油拿鐵咖啡</div></div><div class="price">6.5</div></div>
+    <div class="controls"><div class="temp-group"><button class="temp-btn active" data-temp="ICE">冰</button><button class="temp-btn" data-temp="HOT">熱</button></div><div class="qty-group"><button class="qty-btn minus">−</button><div class="qty">0</div><button class="qty-btn plus">+</button></div></div>
+  </div>
+</section>
+
+<!-- Beverage -->
+<section class="card">
+  <div class="section-head">
+    <div class="section-title">飲料</div>
+    <div class="badge">熱 · 冰</div>
+  </div>
+
+  <div class="item" data-ko="핫초코/아이스초코"><div class="row"><div class="name">巧克力</div><div class="price">5.5</div></div><div class="controls"><div class="temp-group"><button class="temp-btn active" data-temp="ICE">冰</button><button class="temp-btn" data-temp="HOT">熱</button></div><div class="qty-group"><button class="qty-btn minus">−</button><div class="qty">0</div><button class="qty-btn plus">+</button></div></div></div>
+
+  <div class="item" data-ko="녹차라떼"><div class="row"><div class="name">抹茶拿鐵</div><div class="price">5.5</div></div><div class="controls"><div class="temp-group"><button class="temp-btn active" data-temp="ICE">冰</button><button class="temp-btn" data-temp="HOT">熱</button></div><div class="qty-group"><button class="qty-btn minus">−</button><div class="qty">0</div><button class="qty-btn plus">+</button></div></div></div>
+
+  <div class="item" data-ko="밀크티"><div class="row"><div class="name">奶茶</div><div class="price">6.0</div></div><div class="controls"><div class="temp-group"><button class="temp-btn active" data-temp="ICE">冰</button><button class="temp-btn" data-temp="HOT">熱</button></div><div class="qty-group"><button class="qty-btn minus">−</button><div class="qty">0</div><button class="qty-btn plus">+</button></div></div></div>
+
+  <div class="item" data-ko="레몬차"><div class="row"><div class="name">自制 檸檬茶</div><div class="price">6.0</div></div><div class="controls"><div class="temp-group"><button class="temp-btn active" data-temp="ICE">冰</button><button class="temp-btn" data-temp="HOT">熱</button></div><div class="qty-group"><button class="qty-btn minus">−</button><div class="qty">0</div><button class="qty-btn plus">+</button></div></div></div>
+
+  <div class="item" data-ko="자몽차"><div class="row"><div class="name">自制 西柚茶</div><div class="price">6.0</div></div><div class="controls"><div class="temp-group"><button class="temp-btn active" data-temp="ICE">冰</button><button class="temp-btn" data-temp="HOT">熱</button></div><div class="qty-group"><button class="qty-btn minus">−</button><div class="qty">0</div><button class="qty-btn plus">+</button></div></div></div>
+
+  <div class="item" data-ko="레몬에이드"><div class="row"><div class="name">自制 檸檬汽水</div><div class="price">6.5<small>僅冰飲</small></div></div><div class="controls"><div class="temp-group"><button class="temp-btn disabled" data-temp="HOT">熱</button><button class="temp-btn active" data-temp="ICE">冰</button></div><div class="qty-group"><button class="qty-btn minus">−</button><div class="qty">0</div><button class="qty-btn plus">+</button></div></div></div>
+
+  <div class="item" data-ko="자몽에이드"><div class="row"><div class="name">自制 西柚汽水</div><div class="price">6.5<small>僅冰飲</small></div></div><div class="controls"><div class="temp-group"><button class="temp-btn disabled" data-temp="HOT">熱</button><button class="temp-btn active" data-temp="ICE">冰</button></div><div class="qty-group"><button class="qty-btn minus">−</button><div class="qty">0</div><button class="qty-btn plus">+</button></div></div></div>
+
+  <div class="item" data-ko="할머니 딸기우유"><div class="row"><div class="name">奶奶的草莓牛奶</div><div class="price">6.5<small>僅冰飲</small></div></div><div class="controls"><div class="temp-group"><button class="temp-btn disabled" data-temp="HOT">熱</button><button class="temp-btn active" data-temp="ICE">冰</button></div><div class="qty-group"><button class="qty-btn minus">−</button><div class="qty">0</div><button class="qty-btn plus">+</button></div></div></div>
+
+  <div class="item" data-ko="할머니 딸기요거트스무디"><div class="row"><div class="name">奶奶的草莓奶昔</div><div class="price">6.5<small>僅冰飲</small></div></div><div class="controls"><div class="temp-group"><button class="temp-btn disabled" data-temp="HOT">熱</button><button class="temp-btn active" data-temp="ICE">冰</button></div><div class="qty-group"><button class="qty-btn minus">−</button><div class="qty">0</div><button class="qty-btn plus">+</button></div></div></div>
+
+  <div class="item" data-ko="페퍼민트"><div class="row"><div class="name">薄荷茶</div><div class="price">6.0</div></div><div class="controls"><div class="temp-group"><button class="temp-btn active" data-temp="ICE">冰</button><button class="temp-btn" data-temp="HOT">熱</button></div><div class="qty-group"><button class="qty-btn minus">−</button><div class="qty">0</div><button class="qty-btn plus">+</button></div></div></div>
+
+  <div class="item" data-ko="캐모마일"><div class="row"><div class="name">甘菊茶</div><div class="price">6.0</div></div><div class="controls"><div class="temp-group"><button class="temp-btn active" data-temp="ICE">冰</button><button class="temp-btn" data-temp="HOT">熱</button></div><div class="qty-group"><button class="qty-btn minus">−</button><div class="qty">0</div><button class="qty-btn plus">+</button></div></div></div>
+
+  <div class="item" data-ko="라벤더"><div class="row"><div class="name">薰衣草茶</div><div class="price">6.0</div></div><div class="controls"><div class="temp-group"><button class="temp-btn active" data-temp="ICE">冰</button><button class="temp-btn" data-temp="HOT">熱</button></div><div class="qty-group"><button class="qty-btn minus">−</button><div class="qty">0</div><button class="qty-btn plus">+</button></div></div></div>
+
+  <div class="item" data-ko="얼그레이"><div class="row"><div class="name">伯爵茶</div><div class="price">6.0</div></div><div class="controls"><div class="temp-group"><button class="temp-btn active" data-temp="ICE">冰</button><button class="temp-btn" data-temp="HOT">熱</button></div><div class="qty-group"><button class="qty-btn minus">−</button><div class="qty">0</div><button class="qty-btn plus">+</button></div></div></div>
+
+  <div class="item" data-ko="히비스커스"><div class="row"><div class="name">木槿花茶</div><div class="price">6.0</div></div><div class="controls"><div class="temp-group"><button class="temp-btn active" data-temp="ICE">冰</button><button class="temp-btn" data-temp="HOT">熱</button></div><div class="qty-group"><button class="qty-btn minus">−</button><div class="qty">0</div><button class="qty-btn plus">+</button></div></div></div>
+
+  <div class="item" data-ko="레몬밤"><div class="row"><div class="name">檸檬薄荷</div><div class="price">6.0</div></div><div class="controls"><div class="temp-group"><button class="temp-btn active" data-temp="ICE">冰</button><button class="temp-btn" data-temp="HOT">熱</button></div><div class="qty-group"><button class="qty-btn minus">−</button><div class="qty">0</div><button class="qty-btn plus">+</button></div></div></div>
+
+  <div class="item" data-ko="동백 우유"><div class="row"><div class="name">山茶花奶茶</div><div class="price">6.5</div></div><div class="controls"><div class="temp-group"><button class="temp-btn active" data-temp="ICE">冰</button><button class="temp-btn" data-temp="HOT">熱</button></div><div class="qty-group"><button class="qty-btn minus">−</button><div class="qty">0</div><button class="qty-btn plus">+</button></div></div></div>
+
+  <div class="item" data-ko="까멜리아 선셋티"><div class="row"><div class="name">山茶花日落茶</div><div class="price">6.5</div></div><div class="controls"><div class="temp-group"><button class="temp-btn active" data-temp="ICE">冰</button><button class="temp-btn" data-temp="HOT">熱</button></div><div class="qty-group"><button class="qty-btn minus">−</button><div class="qty">0</div><button class="qty-btn plus">+</button></div></div></div>
+
+  <div class="item" data-ko="향미 새콤달콤"><div class="row"><div class="name">葡萄柚檸檬芙蓉茶</div><div class="price">6.5</div></div><div class="controls"><div class="temp-group"><button class="temp-btn active" data-temp="ICE">冰</button><button class="temp-btn" data-temp="HOT">熱</button></div><div class="qty-group"><button class="qty-btn minus">−</button><div class="qty">0</div><button class="qty-btn plus">+</button></div></div></div>
+
+  <div class="item" data-ko="필구 팡팡 쉐이크"><div class="row"><div class="name">彈珠冰沙</div><div class="price">6.5<small>僅冰飲</small></div></div><div class="controls"><div class="temp-group"><button class="temp-btn disabled" data-temp="HOT">熱</button><button class="temp-btn active" data-temp="ICE">冰</button></div><div class="qty-group"><button class="qty-btn minus">−</button><div class="qty">0</div><button class="qty-btn plus">+</button></div></div></div>
+
+  <div class="item" data-ko="달고나 크림 우유"><div class="row"><div class="name">糖餅奶油牛奶</div><div class="price">6.5</div></div><div class="controls"><div class="temp-group"><button class="temp-btn active" data-temp="ICE">冰</button><button class="temp-btn" data-temp="HOT">熱</button></div><div class="qty-group"><button class="qty-btn minus">−</button><div class="qty">0</div><button class="qty-btn plus">+</button></div></div></div>
+
+  <div class="item" data-ko="달고나 밀크티"><div class="row"><div class="name">糖餅奶茶</div><div class="price">6.5</div></div><div class="controls"><div class="temp-group"><button class="temp-btn active" data-temp="ICE">冰</button><button class="temp-btn" data-temp="HOT">熱</button></div><div class="qty-group"><button class="qty-btn minus">−</button><div class="qty">0</div><button class="qty-btn plus">+</button></div></div></div>
+</section>
+
+<!-- Bakery -->
+<section class="card">
+  <div class="section-head">
+    <div class="section-title">奶油餅乾 / 烘焙甜點</div>
+    <div class="badge">DESSERT</div>
+  </div>
+
+  <div class="item" data-ko="두쫀쿠">
+    <div class="row"><div><div class="name">杜拜軟餅乾</div><div class="desc">開心果</div></div><div class="price">7.0</div></div>
+    <div class="controls"><div></div><div class="qty-group"><button class="qty-btn minus">−</button><div class="qty">0</div><button class="qty-btn plus">+</button></div></div>
+  </div>
+
+  <div class="item" data-ko="구쫀쿠">
+    <div class="row"><div><div class="name">九龍浦軟餅乾</div><div class="desc">杏仁 · 焦糖牛奶醬 · Nutella</div></div><div class="price">6.5</div></div>
+    <div class="controls"><div></div><div class="qty-group"><button class="qty-btn minus">−</button><div class="qty">0</div><button class="qty-btn plus">+</button></div></div>
+  </div>
+
+  <div class="item" data-ko="후르츠산도">
+    <div class="row"><div><div class="name">水果三明治</div><div class="desc">季節限定</div></div><div class="price"></div></div>
+    <div class="controls"><div></div><div class="qty-group"><button class="qty-btn minus">−</button><div class="qty">0</div><button class="qty-btn plus">+</button></div></div>
+  </div>
+
+  <div class="item" data-ko="동백빵">
+    <div class="row"><div><div class="name">冬柏麵包</div><div class="desc">4入 · 栗子紅豆</div></div><div class="price">9.5</div></div>
+    <div class="controls"><div></div><div class="qty-group"><button class="qty-btn minus">−</button><div class="qty">0</div><button class="qty-btn plus">+</button></div></div>
+  </div>
+
+  <div class="item" data-ko="과메기빵">
+    <div class="row"><div><div class="name">過梅基麵包</div><div class="desc">4入 · 麻糬內餡</div></div><div class="price">9.9</div></div>
+    <div class="controls"><div></div><div class="qty-group"><button class="qty-btn minus">−</button><div class="qty">0</div><button class="qty-btn plus">+</button></div></div>
+  </div>
+
+  <div class="item" data-ko="샌드한개">
+    <div class="row"><div><div class="name">單品</div><div class="desc">1個</div></div><div class="price">2.0</div></div>
+    <div class="controls">
+      <div class="temp-group flavor-group">
+        <button class="temp-btn active" data-temp="산딸기">覆盆子</button>
+        <button class="temp-btn" data-temp="블루베리">藍莓</button>
+      </div>
+      <div class="qty-group"><button class="qty-btn minus">−</button><div class="qty">0</div><button class="qty-btn plus">+</button></div>
+    </div>
+  </div>
+
+  <div class="item" data-ko="포항샌드">
+    <div class="row"><div><div class="name">浦項奶油餅乾</div><div class="desc">8個 · 各半</div></div><div class="price">16.0</div></div>
+    <div class="controls"><div></div><div class="qty-group"><button class="qty-btn minus">−</button><div class="qty">0</div><button class="qty-btn plus">+</button></div></div>
+  </div>
+
+  <div class="item" data-ko="동백샌드">
+    <div class="row"><div><div class="name">冬柏奶油餅乾</div><div class="desc">8個 · 覆盆子</div></div><div class="price">16.0</div></div>
+    <div class="controls"><div></div><div class="qty-group"><button class="qty-btn minus">−</button><div class="qty">0</div><button class="qty-btn plus">+</button></div></div>
+  </div>
+
+  <div class="item" data-ko="용식샌드">
+    <div class="row"><div><div class="name">龍植奶油餅乾</div><div class="desc">8個 · 藍莓</div></div><div class="price">16.0</div></div>
+    <div class="controls"><div></div><div class="qty-group"><button class="qty-btn minus">−</button><div class="qty">0</div><button class="qty-btn plus">+</button></div></div>
+  </div>
+</section>
+
+<section class="card" id="summarySection">
+  <div class="summary-title">선택한 메뉴</div>
+  <div id="summary" class="empty">아직 선택한 메뉴가 없습니다.</div>
+</section>
+
+</main>
+
+<script>
+document.querySelectorAll(".item").forEach(item => {
+  const qty = item.querySelector(".qty");
+  const plus = item.querySelector(".plus");
+  const minus = item.querySelector(".minus");
+
+  plus.addEventListener("click", () => {
+    qty.textContent = Number(qty.textContent) + 1;
+  });
+
+  minus.addEventListener("click", () => {
+    qty.textContent = Math.max(0, Number(qty.textContent) - 1);
+  });
+
+  item.querySelectorAll(".temp-group").forEach(group => {
+    group.querySelectorAll(".temp-btn").forEach(btn => {
+      if (btn.classList.contains("disabled")) return;
+
+      btn.addEventListener("click", () => {
+        group.querySelectorAll(".temp-btn").forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+      });
+    });
+  });
+});
+
+document.getElementById("completeBtn").addEventListener("click", () => {
+  const list = [];
+
+  document.querySelectorAll(".item").forEach(item => {
+    const q = Number(item.querySelector(".qty").textContent);
+    if (q < 1) return;
+
+    const activeBtn = item.querySelector(".temp-group .temp-btn.active");
+    const selectedValue = activeBtn ? activeBtn.dataset.temp : "";
+    const isFlavor = activeBtn ? activeBtn.closest(".flavor-group") : false;
+    const label = isFlavor ? "맛" : "온도";
+
+    const ko = item.dataset.ko;
+    const name = item.querySelector(".name").textContent.trim();
+
+    list.push(`
+      <div class="summary-item">
+        <strong>${ko}</strong>
+        <span>${name}</span>
+        ${selectedValue ? `<span>${label} : ${selectedValue}</span>` : ""}
+        <span>수량 : ${q}</span>
+      </div>
+    `);
+  });
+
+  const summary = document.getElementById("summary");
+
+  summary.classList.remove("empty");
+  summary.innerHTML = list.length
+    ? list.join("")
+    : `<div class="empty">아직 선택한 메뉴가 없습니다.</div>`;
+
+  document.getElementById("summarySection").scrollIntoView({
+    behavior:"smooth",
+    block:"start"
+  });
+});
+</script>
+
+</body>
+</html>
