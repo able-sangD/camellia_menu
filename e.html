@@ -6,237 +6,215 @@
 <title>Camellia English Menu</title>
 
 <style>
-*{box-sizing:border-box;margin:0;padding:0;}
-
-:root{
---ink:#221c17;
---line:rgba(72,50,24,.22);
---card:rgba(255,250,240,.78);
---accent:#a92f2d;
---accent2:#8d2321;
---shadow:0 12px 28px rgba(50,32,12,.14);
-}
+*{margin:0;padding:0;box-sizing:border-box;}
 
 body{
-font-family:Arial,"Noto Sans KR",sans-serif;
-background:url("bg.png") center/cover no-repeat fixed;
-color:var(--ink);
+  font-family:Arial,"Noto Sans KR",sans-serif;
+  background:url("bg.png") center/cover no-repeat fixed;
+  color:#221c17;
 }
 
 .page{
-width:min(100%,460px);
-margin:auto;
-padding:18px 14px 40px;
+  max-width:460px;
+  margin:auto;
+  padding:18px 14px 44px;
 }
 
 .topbar{
-display:flex;
-justify-content:space-between;
-align-items:center;
-gap:10px;
-margin-bottom:14px;
-position:sticky;
-top:10px;
-z-index:10;
-}
-
-.btn,
-.temp-btn,
-.qty-btn{
-border:none;
-cursor:pointer;
-font:inherit;
-box-shadow:var(--shadow);
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+  margin-bottom:14px;
+  position:sticky;
+  top:10px;
+  z-index:99;
 }
 
 .btn{
-padding:11px 15px;
-border-radius:999px;
-background:rgba(255,255,255,.85);
-font-weight:700;
+  border:none;
+  padding:12px 16px;
+  border-radius:999px;
+  font-weight:800;
+  cursor:pointer;
+  background:white;
+  box-shadow:0 8px 18px rgba(0,0,0,.12);
 }
 
 .complete{
-background:linear-gradient(180deg,var(--accent),var(--accent2));
-color:#fff;
-font-weight:800;
+  background:#a92f2d;
+  color:#fff;
 }
 
 .card{
-background:var(--card);
-border:1px solid var(--line);
-border-radius:22px;
-box-shadow:var(--shadow);
-backdrop-filter:blur(2px);
-padding:16px;
-margin-bottom:14px;
+  background:rgba(255,255,255,.84);
+  padding:16px;
+  border-radius:22px;
+  margin-bottom:14px;
+  box-shadow:0 12px 24px rgba(0,0,0,.08);
 }
 
 .brand{
-text-align:center;
-font-weight:800;
-margin-bottom:10px;
+  text-align:center;
+  font-weight:800;
+  margin-bottom:10px;
 }
 
 h1{
-text-align:center;
-font-size:34px;
-margin-bottom:8px;
+  font-size:34px;
+  text-align:center;
+  margin-bottom:8px;
 }
 
 .sub{
-text-align:center;
-font-size:14px;
-line-height:1.5;
-opacity:.8;
+  font-size:14px;
+  text-align:center;
+  line-height:1.5;
+  opacity:.8;
 }
 
 .section-head{
-display:flex;
-justify-content:space-between;
-align-items:center;
-border-bottom:1px solid var(--line);
-padding-bottom:10px;
-margin-bottom:10px;
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+  margin-bottom:10px;
+  padding-bottom:10px;
+  border-bottom:1px solid rgba(0,0,0,.08);
 }
 
 .section-title{
-font-size:26px;
-font-weight:800;
+  font-size:24px;
+  font-weight:800;
 }
 
-.section-badge{
-font-size:12px;
-padding:6px 10px;
-border-radius:999px;
-background:var(--accent);
-color:#fff;
-font-weight:800;
+.badge{
+  background:#a92f2d;
+  color:#fff;
+  padding:6px 10px;
+  border-radius:999px;
+  font-size:12px;
+  font-weight:800;
+  white-space:nowrap;
 }
 
 .item{
-padding:14px 0;
-border-bottom:1px dashed rgba(72,50,24,.16);
+  padding:14px 0;
+  border-bottom:1px dashed rgba(0,0,0,.1);
 }
 
-.item:last-child{
-border-bottom:none;
-}
+.item:last-child{border-bottom:none;}
 
 .row{
-display:flex;
-justify-content:space-between;
-gap:12px;
+  display:flex;
+  justify-content:space-between;
+  gap:12px;
 }
 
 .name{
-font-size:22px;
-font-weight:800;
-line-height:1.15;
-}
-
-.desc{
-font-size:13px;
-opacity:.8;
-margin-top:5px;
-line-height:1.45;
+  font-size:21px;
+  font-weight:800;
+  line-height:1.18;
 }
 
 .price{
-font-size:18px;
-font-weight:800;
-white-space:nowrap;
-text-align:right;
+  font-size:18px;
+  font-weight:800;
+  white-space:nowrap;
+  text-align:right;
 }
 
 .price small{
-display:block;
-font-size:11px;
-opacity:.7;
-margin-top:3px;
+  display:block;
+  font-size:11px;
+  opacity:.7;
+  margin-top:3px;
+}
+
+.desc{
+  font-size:13px;
+  opacity:.75;
+  margin-top:5px;
+  line-height:1.45;
 }
 
 .controls{
-margin-top:12px;
-display:flex;
-justify-content:space-between;
-align-items:center;
-gap:8px;
-flex-wrap:wrap;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-top:12px;
+  gap:10px;
+  flex-wrap:wrap;
 }
 
 .temp-group,.qty-group{
-display:flex;
-align-items:center;
-gap:8px;
+  display:flex;
+  gap:8px;
+  align-items:center;
 }
 
-.temp-btn{
-padding:7px 12px;
-border-radius:999px;
-background:#fff;
-font-size:12px;
-font-weight:800;
+.temp-btn,.qty-btn{
+  border:none;
+  padding:8px 12px;
+  border-radius:999px;
+  cursor:pointer;
+  font-weight:800;
+  background:#fff;
+  box-shadow:0 4px 10px rgba(0,0,0,.08);
 }
 
 .temp-btn.active{
-background:linear-gradient(180deg,var(--accent),var(--accent2));
-color:#fff;
+  background:#a92f2d;
+  color:#fff;
 }
 
 .temp-btn.disabled{
-opacity:.4;
-pointer-events:none;
+  opacity:.35;
+  pointer-events:none;
 }
 
 .qty-btn{
-width:32px;
-height:32px;
-border-radius:999px;
-background:#fff;
-font-size:18px;
-font-weight:800;
+  width:32px;
+  height:32px;
+  padding:0;
+  font-size:18px;
 }
 
 .qty{
-min-width:28px;
-text-align:center;
-font-size:17px;
-font-weight:800;
+  min-width:24px;
+  text-align:center;
+  font-weight:800;
 }
 
 .summary-title{
-font-size:22px;
-font-weight:800;
-margin-bottom:8px;
+  font-size:22px;
+  font-weight:800;
+  margin-bottom:10px;
 }
 
 .summary-item{
-background:#fff;
-padding:12px;
-border-radius:14px;
-margin-top:10px;
-border:1px solid rgba(72,50,24,.1);
+  background:#fff;
+  border-radius:14px;
+  padding:12px;
+  margin-top:10px;
 }
 
 .summary-item strong{
-display:block;
-font-size:18px;
-margin-bottom:5px;
+  display:block;
+  font-size:18px;
+  margin-bottom:5px;
 }
 
 .summary-item span{
-display:block;
-font-size:14px;
-opacity:.82;
-line-height:1.45;
+  display:block;
+  font-size:14px;
+  line-height:1.45;
+  opacity:.82;
 }
 
 .empty{
-padding:20px;
-text-align:center;
-font-size:14px;
-opacity:.75;
+  font-size:14px;
+  opacity:.7;
+  text-align:center;
+  padding:20px;
 }
 </style>
 </head>
@@ -245,196 +223,385 @@ opacity:.75;
 <main class="page">
 
 <div class="topbar">
-<button class="btn" onclick="location.href='index.html'">← Home</button>
-<button class="btn complete" id="completeBtn">Complete</button>
+  <button class="btn" onclick="location.href='index.html'">← Home</button>
+  <button class="btn complete" id="completeBtn">Complete</button>
 </div>
 
 <section class="card">
-<div class="brand">🌺 까멜리아 CAMELLIA 🌺</div>
-<h1>Drink Menu</h1>
-<div class="sub">
-Choose quantity / HOT / ICE.<br>
-Press Complete and show Korean menu to staff.
-</div>
-</section>
-
-<!-- COFFEE -->
-<section class="card">
-<div class="section-head">
-<div class="section-title">Coffee</div>
-<div class="section-badge">HOT · ICE</div>
-</div>
-
-<div class="item" data-ko="아메리카노 1샷">
-<div class="row">
-<div>
-<div class="name">Americano</div>
-<div class="desc">Choose 1 shot / 2 shots</div>
-</div>
-<div class="price">4.5</div>
-</div>
-<div class="controls">
-<div class="temp-group">
-<button class="temp-btn active">ICE</button>
-<button class="temp-btn">HOT</button>
-</div>
-<div class="temp-group">
-<button class="temp-btn shot active">1 Shot</button>
-<button class="temp-btn shot">2 Shot</button>
-</div>
-<div class="qty-group">
-<button class="qty-btn minus">−</button>
-<div class="qty">0</div>
-<button class="qty-btn plus">+</button>
-</div>
-</div>
-</div>
-
-<div class="item" data-ko="카페라떼"><div class="row"><div class="name">Cafe Latte</div><div class="price">5.5</div></div><div class="controls"><div class="temp-group"><button class="temp-btn active">ICE</button><button class="temp-btn">HOT</button></div><div class="qty-group"><button class="qty-btn minus">−</button><div class="qty">0</div><button class="qty-btn plus">+</button></div></div></div>
-
-<div class="item" data-ko="카푸치노"><div class="row"><div class="name">Cappuccino</div><div class="price">5.5<small>HOT only</small></div></div><div class="controls"><div class="temp-group"><button class="temp-btn active">HOT</button><button class="temp-btn disabled">ICE</button></div><div class="qty-group"><button class="qty-btn minus">−</button><div class="qty">0</div><button class="qty-btn plus">+</button></div></div></div>
-
-<div class="item" data-ko="카페모카"><div class="row"><div class="name">Cafe Mocha</div><div class="price">6.0</div></div><div class="controls"><div class="temp-group"><button class="temp-btn active">ICE</button><button class="temp-btn">HOT</button></div><div class="qty-group"><button class="qty-btn minus">−</button><div class="qty">0</div><button class="qty-btn plus">+</button></div></div></div>
-
-<div class="item" data-ko="돌체라떼"><div class="row"><div class="name">Dolce Latte</div><div class="price">6.0</div></div><div class="controls"><div class="temp-group"><button class="temp-btn active">ICE</button><button class="temp-btn">HOT</button></div><div class="qty-group"><button class="qty-btn minus">−</button><div class="qty">0</div><button class="qty-btn plus">+</button></div></div></div>
-
-<div class="item" data-ko="바닐라라떼"><div class="row"><div class="name">Vanilla Latte</div><div class="price">6.0</div></div><div class="controls"><div class="temp-group"><button class="temp-btn active">ICE</button><button class="temp-btn">HOT</button></div><div class="qty-group"><button class="qty-btn minus">−</button><div class="qty">0</div><button class="qty-btn plus">+</button></div></div></div>
-
-<div class="item" data-ko="카라멜마끼아또"><div class="row"><div class="name">Caramel Macchiato</div><div class="price">6.0</div></div><div class="controls"><div class="temp-group"><button class="temp-btn active">ICE</button><button class="temp-btn">HOT</button></div><div class="qty-group"><button class="qty-btn minus">−</button><div class="qty">0</div><button class="qty-btn plus">+</button></div></div></div>
-</section>
-
-<!-- SIGNATURE -->
-<section class="card">
-<div class="section-head">
-<div class="section-title">Best Signature Menu</div>
-<div class="section-badge">BEST</div>
-</div>
-
-<div class="item" data-ko="까멜리아 슈페너"><div class="row"><div class="name">Camellia Einspanner</div><div class="price">6.5</div></div><div class="controls"><div class="temp-group"><button class="temp-btn active">ICE</button><button class="temp-btn">HOT</button></div><div class="qty-group"><button class="qty-btn minus">−</button><div class="qty">0</div><button class="qty-btn plus">+</button></div></div></div>
-
-<div class="item" data-ko="동백 카페라떼"><div class="row"><div class="name">Camellia Cafe Latte</div><div class="price">6.5</div></div><div class="controls"><div class="temp-group"><button class="temp-btn active">ICE</button><button class="temp-btn">HOT</button></div><div class="qty-group"><button class="qty-btn minus">−</button><div class="qty">0</div><button class="qty-btn plus">+</button></div></div></div>
-
-<div class="item" data-ko="용식이 존프라달라떼"><div class="row"><div class="name">Yongsik's Almond Latte</div><div class="price">6.5</div></div><div class="controls"><div class="temp-group"><button class="temp-btn active">ICE</button><button class="temp-btn">HOT</button></div><div class="qty-group"><button class="qty-btn minus">−</button><div class="qty">0</div><button class="qty-btn plus">+</button></div></div></div>
-
-<div class="item" data-ko="노규태 노땅콩라떼"><div class="row"><div class="name">Peanut Latte</div><div class="price">6.5</div></div><div class="controls"><div class="temp-group"><button class="temp-btn active">ICE</button><button class="temp-btn">HOT</button></div><div class="qty-group"><button class="qty-btn minus">−</button><div class="qty">0</div><button class="qty-btn plus">+</button></div></div></div>
-
-<div class="item" data-ko="홍자영 컬크러쉬라떼"><div class="row"><div class="name">Salted Caramel Latte</div><div class="price">6.5<small>ICE only</small></div></div><div class="controls"><div class="temp-group"><button class="temp-btn disabled">HOT</button><button class="temp-btn active">ICE</button></div><div class="qty-group"><button class="qty-btn minus">−</button><div class="qty">0</div><button class="qty-btn plus">+</button></div></div></div>
-
-<div class="item" data-ko="달고나 크림라떼"><div class="row"><div class="name">Dalgona Cream Latte</div><div class="price">6.5</div></div><div class="controls"><div class="temp-group"><button class="temp-btn active">ICE</button><button class="temp-btn">HOT</button></div><div class="qty-group"><button class="qty-btn minus">−</button><div class="qty">0</div><button class="qty-btn plus">+</button></div></div></div>
-</section>
-
-<!-- BEVERAGE -->
-<section class="card">
-<div class="section-head">
-<div class="section-title">Beverage</div>
-<div class="section-badge">HOT · ICE</div>
-</div>
-
-<div class="item" data-ko="핫초코/아이스초코"><div class="row"><div class="name">Chocolate Latte</div><div class="price">5.5</div></div><div class="controls"><div class="temp-group"><button class="temp-btn active">ICE</button><button class="temp-btn">HOT</button></div><div class="qty-group"><button class="qty-btn minus">−</button><div class="qty">0</div><button class="qty-btn plus">+</button></div></div></div>
-
-<div class="item" data-ko="녹차라떼"><div class="row"><div class="name">Green Tea Latte</div><div class="price">5.5</div></div><div class="controls"><div class="temp-group"><button class="temp-btn active">ICE</button><button class="temp-btn">HOT</button></div><div class="qty-group"><button class="qty-btn minus">−</button><div class="qty">0</div><button class="qty-btn plus">+</button></div></div></div>
-
-<div class="item" data-ko="레몬차"><div class="row"><div class="name">Lemon Tea</div><div class="price">6.0</div></div><div class="controls"><div class="temp-group"><button class="temp-btn active">ICE</button><button class="temp-btn">HOT</button></div><div class="qty-group"><button class="qty-btn minus">−</button><div class="qty">0</div><button class="qty-btn plus">+</button></div></div></div>
-
-<div class="item" data-ko="자몽차"><div class="row"><div class="name">Grapefruit Tea</div><div class="price">6.0</div></div><div class="controls"><div class="temp-group"><button class="temp-btn active">ICE</button><button class="temp-btn">HOT</button></div><div class="qty-group"><button class="qty-btn minus">−</button><div class="qty">0</div><button class="qty-btn plus">+</button></div></div></div>
-
-<div class="item" data-ko="레몬에이드"><div class="row"><div class="name">Lemon Ade</div><div class="price">6.5<small>ICE only</small></div></div><div class="controls"><div class="temp-group"><button class="temp-btn disabled">HOT</button><button class="temp-btn active">ICE</button></div><div class="qty-group"><button class="qty-btn minus">−</button><div class="qty">0</div><button class="qty-btn plus">+</button></div></div></div>
-
-<div class="item" data-ko="자몽에이드"><div class="row"><div class="name">Grapefruit Ade</div><div class="price">6.5<small>ICE only</small></div></div><div class="controls"><div class="temp-group"><button class="temp-btn disabled">HOT</button><button class="temp-btn active">ICE</button></div><div class="qty-group"><button class="qty-btn minus">−</button><div class="qty">0</div><button class="qty-btn plus">+</button></div></div></div>
-
-<div class="item" data-ko="할머니 딸기우유"><div class="row"><div class="name">Strawberry Milk</div><div class="price">6.5<small>ICE only</small></div></div><div class="controls"><div class="temp-group"><button class="temp-btn disabled">HOT</button><button class="temp-btn active">ICE</button></div><div class="qty-group"><button class="qty-btn minus">−</button><div class="qty">0</div><button class="qty-btn plus">+</button></div></div></div>
-
-<div class="item" data-ko="할머니 딸기요거트스무디"><div class="row"><div class="name">Strawberry Yogurt Smoothie</div><div class="price">6.5<small>ICE only</small></div></div><div class="controls"><div class="temp-group"><button class="temp-btn disabled">HOT</button><button class="temp-btn active">ICE</button></div><div class="qty-group"><button class="qty-btn minus">−</button><div class="qty">0</div><button class="qty-btn plus">+</button></div></div></div>
-
-<div class="item" data-ko="페퍼민트"><div class="row"><div class="name">Peppermint Tea</div><div class="price">6.0</div></div><div class="controls"><div class="temp-group"><button class="temp-btn active">ICE</button><button class="temp-btn">HOT</button></div><div class="qty-group"><button class="qty-btn minus">−</button><div class="qty">0</div><button class="qty-btn plus">+</button></div></div></div>
-
-<div class="item" data-ko="캐모마일"><div class="row"><div class="name">Chamomile Tea</div><div class="price">6.0</div></div><div class="controls"><div class="temp-group"><button class="temp-btn active">ICE</button><button class="temp-btn">HOT</button></div><div class="qty-group"><button class="qty-btn minus">−</button><div class="qty">0</div><button class="qty-btn plus">+</button></div></div></div>
-
-<div class="item" data-ko="라벤더"><div class="row"><div class="name">Lavender Tea</div><div class="price">6.0</div></div><div class="controls"><div class="temp-group"><button class="temp-btn active">ICE</button><button class="temp-btn">HOT</button></div><div class="qty-group"><button class="qty-btn minus">−</button><div class="qty">0</div><button class="qty-btn plus">+</button></div></div></div>
-
-<div class="item" data-ko="얼그레이"><div class="row"><div class="name">Earl Grey Tea</div><div class="price">6.0</div></div><div class="controls"><div class="temp-group"><button class="temp-btn active">ICE</button><button class="temp-btn">HOT</button></div><div class="qty-group"><button class="qty-btn minus">−</button><div class="qty">0</div><button class="qty-btn plus">+</button></div></div></div>
-
-<div class="item" data-ko="히비스커스"><div class="row"><div class="name">Hibiscus Tea</div><div class="price">6.0</div></div><div class="controls"><div class="temp-group"><button class="temp-btn active">ICE</button><button class="temp-btn">HOT</button></div><div class="qty-group"><button class="qty-btn minus">−</button><div class="qty">0</div><button class="qty-btn plus">+</button></div></div></div>
-
-<div class="item" data-ko="레몬밤"><div class="row"><div class="name">Lemon Balm Tea</div><div class="price">6.0</div></div><div class="controls"><div class="temp-group"><button class="temp-btn active">ICE</button><button class="temp-btn">HOT</button></div><div class="qty-group"><button class="qty-btn minus">−</button><div class="qty">0</div><button class="qty-btn plus">+</button></div></div></div>
-
-<div class="item" data-ko="밀크티"><div class="row"><div class="name">Milk Tea</div><div class="price">6.0</div></div><div class="controls"><div class="temp-group"><button class="temp-btn active">ICE</button><button class="temp-btn">HOT</button></div><div class="qty-group"><button class="qty-btn minus">−</button><div class="qty">0</div><button class="qty-btn plus">+</button></div></div></div>
-
-<div class="item" data-ko="동백 우유"><div class="row"><div class="name">Camellia Milk</div><div class="price">6.5</div></div><div class="controls"><div class="temp-group"><button class="temp-btn active">ICE</button><button class="temp-btn">HOT</button></div><div class="qty-group"><button class="qty-btn minus">−</button><div class="qty">0</div><button class="qty-btn plus">+</button></div></div></div>
-
-<div class="item" data-ko="까멜리아 선셋티"><div class="row"><div class="name">Camellia Sunset Tea</div><div class="price">6.5</div></div><div class="controls"><div class="temp-group"><button class="temp-btn active">ICE</button><button class="temp-btn">HOT</button></div><div class="qty-group"><button class="qty-btn minus">−</button><div class="qty">0</div><button class="qty-btn plus">+</button></div></div></div>
-
-<div class="item" data-ko="향미 새콤달콤"><div class="row"><div class="name">Sweet & Sour Tea</div><div class="price">6.5</div></div><div class="controls"><div class="temp-group"><button class="temp-btn active">ICE</button><button class="temp-btn">HOT</button></div><div class="qty-group"><button class="qty-btn minus">−</button><div class="qty">0</div><button class="qty-btn plus">+</button></div></div></div>
-
-<div class="item" data-ko="필구 팡팡 쉐이크"><div class="row"><div class="name">Pilgu Pong Shake</div><div class="price">6.5<small>ICE only</small></div></div><div class="controls"><div class="temp-group"><button class="temp-btn disabled">HOT</button><button class="temp-btn active">ICE</button></div><div class="qty-group"><button class="qty-btn minus">−</button><div class="qty">0</div><button class="qty-btn plus">+</button></div></div></div>
-
-<div class="item" data-ko="달고나 크림 우유"><div class="row"><div class="name">Dalgona Cream Milk</div><div class="price">6.5</div></div><div class="controls"><div class="temp-group"><button class="temp-btn active">ICE</button><button class="temp-btn">HOT</button></div><div class="qty-group"><button class="qty-btn minus">−</button><div class="qty">0</div><button class="qty-btn plus">+</button></div></div></div>
-
-<div class="item" data-ko="달고나 밀크티"><div class="row"><div class="name">Dalgona Milk Tea</div><div class="price">6.5</div></div><div class="controls"><div class="temp-group"><button class="temp-btn active">ICE</button><button class="temp-btn">HOT</button></div><div class="qty-group"><button class="qty-btn minus">−</button><div class="qty">0</div><button class="qty-btn plus">+</button></div></div></div>
-
+  <div class="brand">🌺 까멜리아 CAMELLIA 🌺</div>
+  <h1>Drink Menu</h1>
+  <div class="sub">Choose quantity / HOT / ICE.<br>Press Complete and show selected menu to staff.</div>
 </section>
 
 <section class="card">
-<div class="summary-title">Selected Menu</div>
-<div id="summary" class="empty">No menu selected yet.</div>
+  <div class="section-head">
+    <div class="section-title">Coffee</div>
+    <div class="badge">HOT · ICE</div>
+  </div>
+
+  <div class="item" data-ko="아메리카노 1샷">
+    <div class="row"><div><div class="name">Americano 1 Shot</div></div><div class="price">4.5</div></div>
+    <div class="controls"><div class="temp-group"><button class="temp-btn active">ICE</button><button class="temp-btn">HOT</button></div><div class="qty-group"><button class="qty-btn minus">−</button><div class="qty">0</div><button class="qty-btn plus">+</button></div></div>
+  </div>
+
+  <div class="item" data-ko="아메리카노 2샷">
+    <div class="row"><div><div class="name">Americano 2 Shots</div></div><div class="price">4.5</div></div>
+    <div class="controls"><div class="temp-group"><button class="temp-btn active">ICE</button><button class="temp-btn">HOT</button></div><div class="qty-group"><button class="qty-btn minus">−</button><div class="qty">0</div><button class="qty-btn plus">+</button></div></div>
+  </div>
+
+  <div class="item" data-ko="카페라떼">
+    <div class="row"><div class="name">Cafe Latte</div><div class="price">5.5</div></div>
+    <div class="controls"><div class="temp-group"><button class="temp-btn active">ICE</button><button class="temp-btn">HOT</button></div><div class="qty-group"><button class="qty-btn minus">−</button><div class="qty">0</div><button class="qty-btn plus">+</button></div></div>
+  </div>
+
+  <div class="item" data-ko="카푸치노">
+    <div class="row"><div class="name">Cappuccino</div><div class="price">5.5<small>HOT only</small></div></div>
+    <div class="controls"><div class="temp-group"><button class="temp-btn active">HOT</button><button class="temp-btn disabled">ICE</button></div><div class="qty-group"><button class="qty-btn minus">−</button><div class="qty">0</div><button class="qty-btn plus">+</button></div></div>
+  </div>
+
+  <div class="item" data-ko="카페모카">
+    <div class="row"><div class="name">Cafe Mocha</div><div class="price">6.0</div></div>
+    <div class="controls"><div class="temp-group"><button class="temp-btn active">ICE</button><button class="temp-btn">HOT</button></div><div class="qty-group"><button class="qty-btn minus">−</button><div class="qty">0</div><button class="qty-btn plus">+</button></div></div>
+  </div>
+
+  <div class="item" data-ko="돌체라떼">
+    <div class="row"><div class="name">Dolce Latte</div><div class="price">6.0</div></div>
+    <div class="controls"><div class="temp-group"><button class="temp-btn active">ICE</button><button class="temp-btn">HOT</button></div><div class="qty-group"><button class="qty-btn minus">−</button><div class="qty">0</div><button class="qty-btn plus">+</button></div></div>
+  </div>
+
+  <div class="item" data-ko="바닐라라떼">
+    <div class="row"><div class="name">Vanilla Latte</div><div class="price">6.0</div></div>
+    <div class="controls"><div class="temp-group"><button class="temp-btn active">ICE</button><button class="temp-btn">HOT</button></div><div class="qty-group"><button class="qty-btn minus">−</button><div class="qty">0</div><button class="qty-btn plus">+</button></div></div>
+  </div>
+
+  <div class="item" data-ko="카라멜마끼아또">
+    <div class="row"><div class="name">Caramel Macchiato</div><div class="price">6.0</div></div>
+    <div class="controls"><div class="temp-group"><button class="temp-btn active">ICE</button><button class="temp-btn">HOT</button></div><div class="qty-group"><button class="qty-btn minus">−</button><div class="qty">0</div><button class="qty-btn plus">+</button></div></div>
+  </div>
+</section>
+
+<section class="card">
+  <div class="section-head">
+    <div class="section-title">Best Signature Menu</div>
+    <div class="badge">BEST</div>
+  </div>
+
+  <div class="item" data-ko="까멜리아 슈페너">
+    <div class="row"><div><div class="name">Camellia Einspanner</div><div class="desc">Einspanner with vanilla whipped cream</div></div><div class="price">6.5</div></div>
+    <div class="controls"><div class="temp-group"><button class="temp-btn active">ICE</button><button class="temp-btn">HOT</button></div><div class="qty-group"><button class="qty-btn minus">−</button><div class="qty">0</div><button class="qty-btn plus">+</button></div></div>
+  </div>
+
+  <div class="item" data-ko="동백 카페라떼">
+    <div class="row"><div><div class="name">Camellia Cafe Latte</div><div class="desc">Cafe latte with camellia milk tea</div></div><div class="price">6.5</div></div>
+    <div class="controls"><div class="temp-group"><button class="temp-btn active">ICE</button><button class="temp-btn">HOT</button></div><div class="qty-group"><button class="qty-btn minus">−</button><div class="qty">0</div><button class="qty-btn plus">+</button></div></div>
+  </div>
+
+  <div class="item" data-ko="용식이 촘므파탈라떼">
+    <div class="row"><div><div class="name">Yongsik's Almond Latte</div><div class="desc">Almond milk latte</div></div><div class="price">6.5</div></div>
+    <div class="controls"><div class="temp-group"><button class="temp-btn active">ICE</button><button class="temp-btn">HOT</button></div><div class="qty-group"><button class="qty-btn minus">−</button><div class="qty">0</div><button class="qty-btn plus">+</button></div></div>
+  </div>
+
+  <div class="item" data-ko="노규태 노땅콩라떼">
+    <div class="row"><div><div class="name">No!Gyutae's Peanut Latte</div><div class="desc">Creamy peanut latte</div></div><div class="price">6.5</div></div>
+    <div class="controls"><div class="temp-group"><button class="temp-btn active">ICE</button><button class="temp-btn">HOT</button></div><div class="qty-group"><button class="qty-btn minus">−</button><div class="qty">0</div><button class="qty-btn plus">+</button></div></div>
+  </div>
+
+  <div class="item" data-ko="홍자영 컬크러쉬라떼">
+    <div class="row"><div><div class="name">Jayoung's Salted Caramel Latte</div><div class="desc">Salted caramel latte</div></div><div class="price">6.5<small>ICE only</small></div></div>
+    <div class="controls"><div class="temp-group"><button class="temp-btn disabled">HOT</button><button class="temp-btn active">ICE</button></div><div class="qty-group"><button class="qty-btn minus">−</button><div class="qty">0</div><button class="qty-btn plus">+</button></div></div>
+  </div>
+
+  <div class="item" data-ko="달고나 크림라떼">
+    <div class="row"><div><div class="name">Dalgona Cream Latte</div></div><div class="price">6.5</div></div>
+    <div class="controls"><div class="temp-group"><button class="temp-btn active">ICE</button><button class="temp-btn">HOT</button></div><div class="qty-group"><button class="qty-btn minus">−</button><div class="qty">0</div><button class="qty-btn plus">+</button></div></div>
+  </div>
+</section>
+
+<section class="card">
+  <div class="section-head">
+    <div class="section-title">Beverage</div>
+    <div class="badge">HOT · ICE</div>
+  </div>
+
+  <div class="item" data-ko="핫초코/아이스초코"><div class="row"><div class="name">Chocolate Latte</div><div class="price">5.5</div></div><div class="controls"><div class="temp-group"><button class="temp-btn active">ICE</button><button class="temp-btn">HOT</button></div><div class="qty-group"><button class="qty-btn minus">−</button><div class="qty">0</div><button class="qty-btn plus">+</button></div></div></div>
+
+  <div class="item" data-ko="녹차라떼"><div class="row"><div class="name">Green Tea Latte</div><div class="price">5.5</div></div><div class="controls"><div class="temp-group"><button class="temp-btn active">ICE</button><button class="temp-btn">HOT</button></div><div class="qty-group"><button class="qty-btn minus">−</button><div class="qty">0</div><button class="qty-btn plus">+</button></div></div></div>
+
+  <div class="item" data-ko="레몬차"><div class="row"><div class="name">Lemon Tea</div><div class="price">6.0</div></div><div class="controls"><div class="temp-group"><button class="temp-btn active">ICE</button><button class="temp-btn">HOT</button></div><div class="qty-group"><button class="qty-btn minus">−</button><div class="qty">0</div><button class="qty-btn plus">+</button></div></div></div>
+
+  <div class="item" data-ko="자몽차"><div class="row"><div class="name">Grapefruit Tea</div><div class="price">6.0</div></div><div class="controls"><div class="temp-group"><button class="temp-btn active">ICE</button><button class="temp-btn">HOT</button></div><div class="qty-group"><button class="qty-btn minus">−</button><div class="qty">0</div><button class="qty-btn plus">+</button></div></div></div>
+
+  <div class="item" data-ko="레몬에이드"><div class="row"><div class="name">Lemon Ade</div><div class="price">6.5<small>ICE only</small></div></div><div class="controls"><div class="temp-group"><button class="temp-btn disabled">HOT</button><button class="temp-btn active">ICE</button></div><div class="qty-group"><button class="qty-btn minus">−</button><div class="qty">0</div><button class="qty-btn plus">+</button></div></div></div>
+
+  <div class="item" data-ko="자몽에이드"><div class="row"><div class="name">Grapefruit Ade</div><div class="price">6.5<small>ICE only</small></div></div><div class="controls"><div class="temp-group"><button class="temp-btn disabled">HOT</button><button class="temp-btn active">ICE</button></div><div class="qty-group"><button class="qty-btn minus">−</button><div class="qty">0</div><button class="qty-btn plus">+</button></div></div></div>
+
+  <div class="item" data-ko="할머니 딸기우유"><div class="row"><div class="name">Strawberry Latte</div><div class="price">6.5<small>ICE only</small></div></div><div class="controls"><div class="temp-group"><button class="temp-btn disabled">HOT</button><button class="temp-btn active">ICE</button></div><div class="qty-group"><button class="qty-btn minus">−</button><div class="qty">0</div><button class="qty-btn plus">+</button></div></div></div>
+
+  <div class="item" data-ko="할머니 딸기요거트스무디"><div class="row"><div class="name">Strawberry Yogurt Shake</div><div class="price">6.5<small>ICE only</small></div></div><div class="controls"><div class="temp-group"><button class="temp-btn disabled">HOT</button><button class="temp-btn active">ICE</button></div><div class="qty-group"><button class="qty-btn minus">−</button><div class="qty">0</div><button class="qty-btn plus">+</button></div></div></div>
+
+  <div class="item" data-ko="페퍼민트"><div class="row"><div class="name">Peppermint Tea</div><div class="price">6.0</div></div><div class="controls"><div class="temp-group"><button class="temp-btn active">ICE</button><button class="temp-btn">HOT</button></div><div class="qty-group"><button class="qty-btn minus">−</button><div class="qty">0</div><button class="qty-btn plus">+</button></div></div></div>
+
+  <div class="item" data-ko="캐모마일"><div class="row"><div class="name">Chamomile Tea</div><div class="price">6.0</div></div><div class="controls"><div class="temp-group"><button class="temp-btn active">ICE</button><button class="temp-btn">HOT</button></div><div class="qty-group"><button class="qty-btn minus">−</button><div class="qty">0</div><button class="qty-btn plus">+</button></div></div></div>
+
+  <div class="item" data-ko="라벤더"><div class="row"><div class="name">Lavender Tea</div><div class="price">6.0</div></div><div class="controls"><div class="temp-group"><button class="temp-btn active">ICE</button><button class="temp-btn">HOT</button></div><div class="qty-group"><button class="qty-btn minus">−</button><div class="qty">0</div><button class="qty-btn plus">+</button></div></div></div>
+
+  <div class="item" data-ko="얼그레이"><div class="row"><div class="name">Earl Grey Tea</div><div class="price">6.0</div></div><div class="controls"><div class="temp-group"><button class="temp-btn active">ICE</button><button class="temp-btn">HOT</button></div><div class="qty-group"><button class="qty-btn minus">−</button><div class="qty">0</div><button class="qty-btn plus">+</button></div></div></div>
+
+  <div class="item" data-ko="히비스커스"><div class="row"><div class="name">Hibiscus Tea</div><div class="price">6.0</div></div><div class="controls"><div class="temp-group"><button class="temp-btn active">ICE</button><button class="temp-btn">HOT</button></div><div class="qty-group"><button class="qty-btn minus">−</button><div class="qty">0</div><button class="qty-btn plus">+</button></div></div></div>
+
+  <div class="item" data-ko="레몬밤"><div class="row"><div class="name">Lemon Balm Tea</div><div class="price">6.0</div></div><div class="controls"><div class="temp-group"><button class="temp-btn active">ICE</button><button class="temp-btn">HOT</button></div><div class="qty-group"><button class="qty-btn minus">−</button><div class="qty">0</div><button class="qty-btn plus">+</button></div></div></div>
+
+  <div class="item" data-ko="밀크티"><div class="row"><div class="name">Milk Tea</div><div class="price">6.0</div></div><div class="controls"><div class="temp-group"><button class="temp-btn active">ICE</button><button class="temp-btn">HOT</button></div><div class="qty-group"><button class="qty-btn minus">−</button><div class="qty">0</div><button class="qty-btn plus">+</button></div></div></div>
+
+  <div class="item" data-ko="동백 우유"><div class="row"><div><div class="name">Camellia Milk Tea</div><div class="desc">Floral milk tea infused with milk tea</div></div><div class="price">6.5</div></div><div class="controls"><div class="temp-group"><button class="temp-btn active">ICE</button><button class="temp-btn">HOT</button></div><div class="qty-group"><button class="qty-btn minus">−</button><div class="qty">0</div><button class="qty-btn plus">+</button></div></div></div>
+
+  <div class="item" data-ko="까멜리아 선셋티"><div class="row"><div class="name">Peach Grapefruit Tea</div><div class="price">6.5</div></div><div class="controls"><div class="temp-group"><button class="temp-btn active">ICE</button><button class="temp-btn">HOT</button></div><div class="qty-group"><button class="qty-btn minus">−</button><div class="qty">0</div><button class="qty-btn plus">+</button></div></div></div>
+
+  <div class="item" data-ko="향미 새콤달콤"><div class="row"><div class="name">Grapefruit Lemon Hibiscus</div><div class="price">6.5</div></div><div class="controls"><div class="temp-group"><button class="temp-btn active">ICE</button><button class="temp-btn">HOT</button></div><div class="qty-group"><button class="qty-btn minus">−</button><div class="qty">0</div><button class="qty-btn plus">+</button></div></div></div>
+
+  <div class="item" data-ko="필구 팡팡 쉐이크"><div class="row"><div><div class="name">Pilgu Jelly Pong Shake</div><div class="desc">Shake with jelly pong cereal and multigrain powder</div></div><div class="price">6.5<small>ICE only</small></div></div><div class="controls"><div class="temp-group"><button class="temp-btn disabled">HOT</button><button class="temp-btn active">ICE</button></div><div class="qty-group"><button class="qty-btn minus">−</button><div class="qty">0</div><button class="qty-btn plus">+</button></div></div></div>
+
+  <div class="item" data-ko="달고나 크림 우유"><div class="row"><div class="name">Dalgona Cream Milk</div><div class="price">6.5</div></div><div class="controls"><div class="temp-group"><button class="temp-btn active">ICE</button><button class="temp-btn">HOT</button></div><div class="qty-group"><button class="qty-btn minus">−</button><div class="qty">0</div><button class="qty-btn plus">+</button></div></div></div>
+
+  <div class="item" data-ko="달고나 밀크티"><div class="row"><div class="name">Dalgona Milk Tea</div><div class="price">6.5</div></div><div class="controls"><div class="temp-group"><button class="temp-btn active">ICE</button><button class="temp-btn">HOT</button></div><div class="qty-group"><button class="qty-btn minus">−</button><div class="qty">0</div><button class="qty-btn plus">+</button></div></div></div>
+</section>
+
+<!-- Bakery Section : e.html에 Beverage 아래 / Selected Menu 위에 붙여넣기 -->
+
+<section class="card">
+  <div class="section-head">
+    <div class="section-title">Bakery</div>
+    <div class="badge">DESSERT</div>
+  </div>
+
+  <!-- Dubai Cookie -->
+  <div class="item" data-ko="두쫀쿠">
+    <div class="row">
+      <div>
+        <div class="name">Dubai Chewy Cookie</div>
+        <div class="desc">Pistachio</div>
+      </div>
+      <div class="price">7.0</div>
+    </div>
+    <div class="controls">
+      <div></div>
+      <div class="qty-group">
+        <button class="qty-btn minus">−</button>
+        <div class="qty">0</div>
+        <button class="qty-btn plus">+</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Guryongpo Cookie -->
+  <div class="item" data-ko="구쫀쿠">
+    <div class="row">
+      <div>
+        <div class="name">Guryongpo Chewy Cookie</div>
+        <div class="desc">Almond · Dulce de Leche · Nutella</div>
+      </div>
+      <div class="price">6.5</div>
+    </div>
+    <div class="controls">
+      <div></div>
+      <div class="qty-group">
+        <button class="qty-btn minus">−</button>
+        <div class="qty">0</div>
+        <button class="qty-btn plus">+</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Fruit Sandwich -->
+  <div class="item" data-ko="후르츠산도">
+    <div class="row">
+      <div>
+        <div class="name">Fruit Sandwich</div>
+        <div class="desc">Seasonal Menu</div>
+      </div>
+      <div class="price"></div>
+    </div>
+    <div class="controls">
+      <div></div>
+      <div class="qty-group">
+        <button class="qty-btn minus">−</button>
+        <div class="qty">0</div>
+        <button class="qty-btn plus">+</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Dongbaek Bread -->
+  <div class="item" data-ko="동백빵">
+    <div class="row">
+      <div>
+        <div class="name">Dongbaek Bread</div>
+        <div class="desc">4 pcs / Chestnut & Red Bean</div>
+      </div>
+      <div class="price">9.5</div>
+    </div>
+    <div class="controls">
+      <div></div>
+      <div class="qty-group">
+        <button class="qty-btn minus">−</button>
+        <div class="qty">0</div>
+        <button class="qty-btn plus">+</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Camellia Bread -->
+  <div class="item" data-ko="과메기빵">
+    <div class="row">
+      <div>
+        <div class="name">Camellia Bread</div>
+        <div class="desc">4 pcs · With chewy mochi</div>
+      </div>
+      <div class="price">9.9</div>
+    </div>
+    <div class="controls">
+      <div></div>
+      <div class="qty-group">
+        <button class="qty-btn minus">−</button>
+        <div class="qty">0</div>
+        <button class="qty-btn plus">+</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Butter Sand -->
+  <div class="item" data-ko="샌드한개">
+    <div class="row">
+      <div>
+        <div class="name">Butter Sand</div>
+        <div class="desc">1 pcs (Raspberry or Blueberry)</div>
+      </div>
+      <div class="price">2.0</div>
+    </div>
+    <div class="controls">
+      <div></div>
+      <div class="qty-group">
+        <button class="qty-btn minus">−</button>
+        <div class="qty">0</div>
+        <button class="qty-btn plus">+</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Pohang Sand -->
+  <div class="item" data-ko="포항샌드">
+    <div class="row">
+      <div>
+        <div class="name">Pohang Sand</div>
+        <div class="desc">8 pcs · Mixed (Raspberry / Blueberry)</div>
+      </div>
+      <div class="price">16.0</div>
+    </div>
+    <div class="controls">
+      <div></div>
+      <div class="qty-group">
+        <button class="qty-btn minus">−</button>
+        <div class="qty">0</div>
+        <button class="qty-btn plus">+</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Dongbaek Sand -->
+  <div class="item" data-ko="동백샌드">
+    <div class="row">
+      <div>
+        <div class="name">Dongbaek Sand</div>
+        <div class="desc">8 pcs · Raspberry from Pohang</div>
+      </div>
+      <div class="price">16.0</div>
+    </div>
+    <div class="controls">
+      <div></div>
+      <div class="qty-group">
+        <button class="qty-btn minus">−</button>
+        <div class="qty">0</div>
+        <button class="qty-btn plus">+</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Yongsik Sand -->
+  <div class="item" data-ko="용식샌드">
+    <div class="row">
+      <div>
+        <div class="name">Yongsik Sand</div>
+        <div class="desc">8 pcs · Blueberry from Pohang</div>
+      </div>
+      <div class="price">16.0</div>
+    </div>
+    <div class="controls">
+      <div></div>
+      <div class="qty-group">
+        <button class="qty-btn minus">−</button>
+        <div class="qty">0</div>
+        <button class="qty-btn plus">+</button>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<section class="card" id="summarySection">
+  <div class="summary-title">Selected Menu</div>
+  <div id="summary" class="empty">No menu selected yet.</div>
 </section>
 
 </main>
 
 <script>
 document.querySelectorAll(".item").forEach(item=>{
+  const qty=item.querySelector(".qty");
+  const plus=item.querySelector(".plus");
+  const minus=item.querySelector(".minus");
 
-const qty=item.querySelector(".qty");
-const plus=item.querySelector(".plus");
-const minus=item.querySelector(".minus");
+  plus.onclick=()=>qty.textContent=+qty.textContent+1;
+  minus.onclick=()=>qty.textContent=Math.max(0,+qty.textContent-1);
 
-plus.onclick=()=>qty.textContent=+qty.textContent+1;
-minus.onclick=()=>qty.textContent=Math.max(0,+qty.textContent-1);
-
-item.querySelectorAll(".temp-group").forEach(group=>{
-group.querySelectorAll(".temp-btn").forEach(btn=>{
-if(btn.classList.contains("disabled")) return;
-btn.onclick=()=>{
-group.querySelectorAll(".temp-btn").forEach(b=>b.classList.remove("active"));
-btn.classList.add("active");
-};
-});
-});
-
+  item.querySelectorAll(".temp-group").forEach(group=>{
+    group.querySelectorAll(".temp-btn").forEach(btn=>{
+      if(btn.classList.contains("disabled")) return;
+      btn.onclick=()=>{
+        group.querySelectorAll(".temp-btn").forEach(b=>b.classList.remove("active"));
+        btn.classList.add("active");
+      };
+    });
+  });
 });
 
 document.getElementById("completeBtn").onclick=()=>{
+  const list=[];
 
-const list=[];
+  document.querySelectorAll(".item").forEach(item=>{
+    const q=+item.querySelector(".qty").textContent;
+    if(q<1) return;
 
-document.querySelectorAll(".item").forEach(item=>{
+    const temp=item.querySelector(".temp-btn.active").textContent;
+    const name=item.dataset.ko;
+    const en=item.querySelector(".name").textContent;
 
-const q=+item.querySelector(".qty").textContent;
-if(q<1) return;
+    list.push(`
+      <div class="summary-item">
+        <strong>${name}</strong>
+        <span>${en}</span>
+        <span>온도 : ${temp}</span>
+        <span>수량 : ${q}</span>
+      </div>
+    `);
+  });
 
-let temp="";
-const active=item.querySelector(".temp-group .temp-btn.active");
-if(active) temp=active.textContent;
+  document.getElementById("summary").innerHTML=
+    list.length ? list.join("") : "No menu selected yet.";
 
-let name=item.dataset.ko;
-
-const shot=item.querySelector(".shot.active");
-if(shot){
-name="아메리카노 "+shot.textContent.replace(" Shot","샷");
-}
-
-list.push(`
-<div class="summary-item">
-<strong>${name}</strong>
-<span>온도 : ${temp}</span>
-<span>수량 : ${q}</span>
-</div>
-`);
-
-});
-
-document.getElementById("summary").innerHTML=
-list.length?list.join(""):"No menu selected yet.";
+  document.getElementById("summarySection").scrollIntoView({
+    behavior:"smooth",
+    block:"start"
+  });
 };
 </script>
 
