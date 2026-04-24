@@ -452,41 +452,46 @@ h1{
 
   <!-- Camellia Bread -->
   <div class="item" data-ko="과메기빵">
-    <div class="row">
-      <div>
-        <div class="name">Camellia Bread</div>
-        <div class="desc">4 pcs · With chewy mochi</div>
-      </div>
-      <div class="price">9.9</div>
+  <div class="row">
+    <div>
+      <div class="name">Gwamegi Bread</div>
+      <div class="desc">4 pcs · With chewy mochi</div>
     </div>
-    <div class="controls">
-      <div></div>
-      <div class="qty-group">
-        <button class="qty-btn minus">−</button>
-        <div class="qty">0</div>
-        <button class="qty-btn plus">+</button>
-      </div>
+    <div class="price">9.9</div>
+  </div>
+  <div class="controls">
+    <div></div>
+    <div class="qty-group">
+      <button class="qty-btn minus">−</button>
+      <div class="qty">0</div>
+      <button class="qty-btn plus">+</button>
     </div>
   </div>
+</div>
 
   <!-- Butter Sand -->
   <div class="item" data-ko="샌드한개">
-    <div class="row">
-      <div>
-        <div class="name">Butter Sand</div>
-        <div class="desc">1 pcs (Raspberry or Blueberry)</div>
-      </div>
-      <div class="price">2.0</div>
+  <div class="row">
+    <div>
+      <div class="name">Butter Sand</div>
+      <div class="desc">1 pcs</div>
     </div>
-    <div class="controls">
-      <div></div>
-      <div class="qty-group">
-        <button class="qty-btn minus">−</button>
-        <div class="qty">0</div>
-        <button class="qty-btn plus">+</button>
-      </div>
+    <div class="price">2.0</div>
+  </div>
+
+  <div class="controls">
+    <div class="temp-group flavor-group">
+      <button class="temp-btn active" data-temp="산딸기">Raspberry</button>
+      <button class="temp-btn" data-temp="블루베리">Blueberry</button>
+    </div>
+
+    <div class="qty-group">
+      <button class="qty-btn minus">−</button>
+      <div class="qty">0</div>
+      <button class="qty-btn plus">+</button>
     </div>
   </div>
+</div>
 
   <!-- Pohang Sand -->
   <div class="item" data-ko="포항샌드">
@@ -584,22 +589,22 @@ document.getElementById("completeBtn").addEventListener("click", () => {
   const list = [];
 
   document.querySelectorAll(".item").forEach(item => {
-    const qtyEl = item.querySelector(".qty");
-    const q = Number(qtyEl.textContent);
-
+    const q = Number(item.querySelector(".qty").textContent);
     if (q < 1) return;
 
-    const activeTemp = item.querySelector(".temp-group .temp-btn.active");
-    const temp = activeTemp ? activeTemp.textContent.trim() : "";
+    const activeBtn = item.querySelector(".temp-group .temp-btn.active");
+    const selectedValue = activeBtn ? (activeBtn.dataset.temp || activeBtn.textContent.trim()) : "";
+    const isFlavor = activeBtn ? activeBtn.closest(".flavor-group") : false;
+    const label = isFlavor ? "맛" : "온도";
 
-    const name = item.dataset.ko;
+    const ko = item.dataset.ko;
     const en = item.querySelector(".name").textContent.trim();
 
     list.push(`
       <div class="summary-item">
-        <strong>${name}</strong>
+        <strong>${ko}</strong>
         <span>${en}</span>
-        ${temp ? `<span>온도 : ${temp}</span>` : ""}
+        ${selectedValue ? `<span>${label} : ${selectedValue}</span>` : ""}
         <span>수량 : ${q}</span>
       </div>
     `);
