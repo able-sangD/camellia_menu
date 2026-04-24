@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Camellia QR Menu</title>
+  <style>
+    * { box-sizing: border-box; }
+
+    :root {
+      --ink: #221c17;
+      --line: rgba(72, 50, 24, 0.22);
+      --card: rgba(255, 250, 240, 0.72);
+      --chip: #a92f2d;
+      --chip-dark: #8d2321;
+      --shadow: 0 12px 28px rgba(50, 32, 12, 0.14);
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, "Noto Sans KR", sans-serif;
+      color: var(--ink);
+      background: url("bg.png") center/cover no-repeat fixed;
+    }
+
+    .hidden { display: none !important; }
+
+    .page {
+      width: min(100%, 460px);
+      margin: 0 auto;
+      min-height: 100vh;
+      padding: 18px 14px 32px;
+    }
+
+    .card, .menu-card, .summary-card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(2px);
+    }
+
+    .lang-page {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .lang-wrap {
+      width: min(100%, 430px);
+    }
+
+    .lang-card {
+      text-align: center;
+      padding: 30px 22px 22px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .lang-card::before,
+    .lang-card::after {
+      content: "🌺";
+      position: absolute;
+      top: 18px;
+      font-size: 28px;
+      opacity: 0.95;
+    }
+
+    .lang-card::before { left: 18px; }
+    .lang-card::after { right: 18px; }
+
+    .title-img {
+      width: 100%;
+      margin-bottom: 26px;
+      border-radius: 10px;
+    }
+
+    .buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .btn {
+      width: 100%;
+      padding: 16px;
+      border-radius: 14px;
+      border: none;
+      font-size: 18px;
+      font-weight: 700;
+      cursor: pointer;
+      background: rgba(255,255,255,0.88);
+      color: var(--ink);
+      box-shadow: 0 6px 14px rgba(0,0,0,0.15);
+      transition: 0.2s;
+    }
+
+    .btn:hover { transform: translateY(-2px); }
+
+    .foot {
+      margin-top: 18px;
+      padding-top: 16px;
+      border-top: 1px solid rgba(70, 46, 24, 0.1);
+      color: rgba(34,28,23,0.74);
+      font-size: 0.88rem;
+      line-height: 1.5;
+    }
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 14px;
+      position: sticky;
+      top: 10px;
+      z-index: 5;
+    }
+
+    .back-btn,
+    .lang-chip,
+    .done-btn,
+    .qty-btn {
+      border: none;
+      box-shadow: var(--shadow);
+    }
+
+    .back-btn {
+      background: rgba(255,255,255,0.78);
+      border-radius: 999px;
+      padding: 10px 14px;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--ink);
+      cursor: pointer;
+    }
+
+    .done-btn {
+      background: linear-gradient(180deg, var(--chip), var(--chip-dark));
+      color: #fff;
+      border-radius: 999px;
+      padding: 12px 18px;
+      font-size: 14px;
+      font-weight: 800;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .lang-chip {
+      background: rgba(255,255,255,0.82);
+      color: var(--ink);
+      border-radius: 999px;
+      padding: 10px 14px;
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+    }
+
+    .title-card {
+      padding: 18px 16px 16px;
+      text-align: center;
+      margin-bottom: 14px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 15px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 10px;
+    }
+
+    .flower { font-size: 20px; }
+
+    h1 {
+      margin: 0;
+      font-size: 34px;
+      line-height: 1.05;
+      letter-spacing: -0.04em;
+    }
+
+    .subtitle {
+      margin: 8px 0 0;
+      font-size: 15px;
+      line-height: 1.5;
+      opacity: 0.8;
+    }
+
+    .menu-card {
+      padding: 14px;
+      margin-bottom: 14px;
+    }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 10px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .section-title {
+      font-size: 26px;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+    }
+
+    .section-sub {
+      font-size: 12px;
+      font-weight: 800;
+      color: #fff;
+      background: var(--chip);
+      border-radius: 999px;
+      padding: 7px 10px;
+      white-space: nowrap;
+    }
+
+    .item {
+      padding: 12px 2px;
+      border-bottom: 1px dashed rgba(72, 50, 24, 0.18);
+    }
+
+    .item:last-child { border-bottom: none; }
+
+    .row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .name {
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.15;
+    }
+
+    .desc {
+      margin-top: 5px;
+      font-size: 13px;
+      line-height: 1.45;
+      opacity: 0.82;
+    }
+
+    .price {
+      min-width: 86px;
+      text-align: right;
+      font-size: 18px;
+      font-weight: 800;
+      line-height: 1.35;
+      white-space: nowrap;
+    }
+
+    .price small {
+      display: block;
+      font-size: 11px;
+      font-weight: 700;
+      opacity: 0.75;
+    }
+
+    .badge-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 8px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      border-radius: 999px;
+      padding: 4px 8px;
+      font-size: 11px;
+      font-weight: 800;
+      background: rgba(169, 47, 45, 0.10);
+      color: #8c2826;
+    }
+
+    .pick-row {
+      margin-top: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 8px;
+    }
+
+    .qty-box {
+      min-width: 32px;
+      text-align: center;
+      font-weight: 800;
+      font-size: 16px;
+    }
+
+    .qty-btn {
+      width: 32px;
+      height: 32px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.88);
+      color: var(--ink);
+      font-size: 18px;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .summary-card {
+      padding: 16px 14px;
+    }
+
+    .summary-title {
+      font-size: 22px;
+      font-weight: 800;
+      margin-bottom: 8px;
+      letter-spacing: -0.03em;
+    }
+
+    .summary-sub {
+      font-size: 14px;
+      line-height: 1.5;
+      opacity: 0.8;
+      margin-bottom: 14px;
+    }
+
+    .summary-list {
+      display: grid;
+      gap: 10px;
+    }
+
+    .summary-item {
+      border-radius: 16px;
+      background: rgba(255,255,255,0.78);
+      border: 1px solid rgba(72, 50, 24, 0.14);
+      padding: 12px;
+    }
+
+    .summary-item strong {
+      display: block;
+      font-size: 18px;
+      margin-bottom: 4px;
+    }
+
+    .summary-item span {
+      display: block;
+      font-size: 14px;
+      line-height: 1.45;
+      opacity: 0.8;
+    }
+
+    .empty-box {
+      padding: 20px 14px;
+      text-align: center;
+      border-radius: 16px;
+      background: rgba(255,255,255,0.7);
+      border: 1px dashed rgba(72, 50, 24, 0.2);
+      font-size: 14px;
+      line-height: 1.6;
+      opacity: 0.8;
+    }
+  </style>
+</head>
+<body>
+  <section id="languagePage" class="lang-page">
+    <div class="lang-wrap">
+      <div class="card lang-card">
+        <img src="title.png" alt="까멜리아" class="title-img" />
+        <div class="buttons">
+          <button class="btn" type="button" id="englishBtn">English</button>
+          <button class="btn" type="button">繁體中文</button>
+          <button class="btn" type="button">日本語</button>
+        </div>
+        <div class="foot">까멜리아 다국어 메뉴판 QR 페이지</div>
+      </div>
+    </div>
+  </section>
+
+  <main id="englishPage" class="page hidden">
+    <div class="topbar">
+      <button class="back-btn" type="button" id="backToLanguage">← Language</button>
+      <button class="done-btn" type="button" id="showSummaryBtn">선택 완료</button>
+    </div>
+
+    <section class="card title-card">
+      <div class="brand"><span class="flower">🌺</span><span>까멜리아 CAMELLIA</span><span class="flower">🌺</span></div>
+      <h1>Drink Menu</h1>
+      <p class="subtitle">Tap + to select items. When you press the complete button, your chosen drinks will be shown in Korean.</p>
+    </section>
+
+    <section class="menu-card">
+      <div class="section-head">
+        <div class="section-title">Coffee</div>
+        <div class="section-sub">HOT · ICE</div>
+      </div>
+
+      <div class="item" data-en="Americano" data-ko="아메리카노">
+        <div class="row">
+          <div>
+            <div class="name">Americano</div>
+            <div class="desc">1 shot / 2 shots</div>
+          </div>
+          <div class="price">4.5<small>HOT · ICE</small></div>
+        </div>
+        <div class="pick-row"><button class="qty-btn minus" type="button">−</button><div class="qty-box">0</div><button class="qty-btn plus" type="button">+</button></div>
+      </div>
+
+      <div class="item" data-en="Cafe Latte" data-ko="카페 라떼"><div class="row"><div class="name">Cafe Latte</div><div class="price">5.5<small>HOT · ICE</small></div></div><div class="pick-row"><button class="qty-btn minus" type="button">−</button><div class="qty-box">0</div><button class="qty-btn plus" type="button">+</button></div></div>
+      <div class="item" data-en="Cappuccino" data-ko="카푸치노"><div class="row"><div class="name">Cappuccino</div><div class="price">5.5<small>HOT only</small></div></div><div class="pick-row"><button class="qty-btn minus" type="button">−</button><div class="qty-box">0</div><button class="qty-btn plus" type="button">+</button></div></div>
+      <div class="item" data-en="Cafe Mocha" data-ko="카페모카"><div class="row"><div class="name">Cafe Mocha</div><div class="price">6.0<small>HOT · ICE</small></div></div><div class="pick-row"><button class="qty-btn minus" type="button">−</button><div class="qty-box">0</div><button class="qty-btn plus" type="button">+</button></div></div>
+      <div class="item" data-en="Dolce Latte" data-ko="돌체라떼"><div class="row"><div class="name">Dolce Latte</div><div class="price">6.0<small>HOT · ICE</small></div></div><div class="pick-row"><button class="qty-btn minus" type="button">−</button><div class="qty-box">0</div><button class="qty-btn plus" type="button">+</button></div></div>
+      <div class="item" data-en="Vanilla Latte" data-ko="바닐라 라떼"><div class="row"><div class="name">Vanilla Latte</div><div class="price">6.0<small>HOT · ICE</small></div></div><div class="pick-row"><button class="qty-btn minus" type="button">−</button><div class="qty-box">0</div><button class="qty-btn plus" type="button">+</button></div></div>
+      <div class="item" data-en="Caramel Macchiato" data-ko="카라멜 마끼아또"><div class="row"><div class="name">Caramel Macchiato</div><div class="price">6.0<small>HOT · ICE</small></div></div><div class="pick-row"><button class="qty-btn minus" type="button">−</button><div class="qty-box">0</div><button class="qty-btn plus" type="button">+</button></div></div>
+    </section>
+
+    <section class="menu-card">
+      <div class="section-head">
+        <div class="section-title">Beverage</div>
+        <div class="section-sub">HOT · ICE</div>
+      </div>
+
+      <div class="item" data-en="Chocolate Latte" data-ko="핫초코 / 아이스초코"><div class="row"><div class="name">Chocolate Latte</div><div class="price">5.5<small>HOT · ICE</small></div></div><div class="pick-row"><button class="qty-btn minus" type="button">−</button><div class="qty-box">0</div><button class="qty-btn plus" type="button">+</button></div></div>
+      <div class="item" data-en="Green Tea Latte" data-ko="녹차라떼"><div class="row"><div class="name">Green Tea Latte</div><div class="price">5.5<small>HOT · ICE</small></div></div><div class="pick-row"><button class="qty-btn minus" type="button">−</button><div class="qty-box">0</div><button class="qty-btn plus" type="button">+</button></div></div>
+      <div class="item" data-en="Milk Tea" data-ko="밀크티"><div class="row"><div class="name">Milk Tea</div><div class="price">6.0<small>HOT · ICE</small></div></div><div class="pick-row"><button class="qty-btn minus" type="button">−</button><div class="qty-box">0</div><button class="qty-btn plus" type="button">+</button></div></div>
+      <div class="item" data-en="Tea" data-ko="수제 레몬차 / 자몽차"><div class="row"><div class="name">Tea</div><div class="price">6.0<small>Lemon / Grapefruit</small></div></div><div class="pick-row"><button class="qty-btn minus" type="button">−</button><div class="qty-box">0</div><button class="qty-btn plus" type="button">+</button></div></div>
+      <div class="item" data-en="Ade" data-ko="수제청에이드(레몬 / 자몽)"><div class="row"><div class="name">Ade</div><div class="price">6.5<small>Lemon / Grapefruit</small></div></div><div class="badge-row"><span class="badge">Sparkling</span><span class="badge">ICE only</span></div><div class="pick-row"><button class="qty-btn minus" type="button">−</button><div class="qty-box">0</div><button class="qty-btn plus" type="button">+</button></div></div>
+      <div class="item" data-en="Strawberry Latte" data-ko="할머니 딸기우유"><div class="row"><div class="name">Strawberry Latte</div><div class="price">6.5<small>ICE only</small></div></div><div class="pick-row"><button class="qty-btn minus" type="button">−</button><div class="qty-box">0</div><button class="qty-btn plus" type="button">+</button></div></div>
+      <div class="item" data-en="Strawberry Yogurt Shake" data-ko="할머니 딸기요거트스무디"><div class="row"><div class="name">Strawberry Yogurt Shake</div><div class="price">6.5<small>ICE only</small></div></div><div class="pick-row"><button class="qty-btn minus" type="button">−</button><div class="qty-box">0</div><button class="qty-btn plus" type="button">+</button></div></div>
+      <div class="item" data-en="Peppermint / Chamomile / Lavender" data-ko="페퍼민트 / 캐모마일 / 라벤더"><div class="row"><div class="name">Peppermint / Chamomile / Lavender</div><div class="price">6.0<small>HOT · ICE</small></div></div><div class="pick-row"><button class="qty-btn minus" type="button">−</button><div class="qty-box">0</div><button class="qty-btn plus" type="button">+</button></div></div>
+      <div class="item" data-en="Earl Grey / Hibiscus / Lemon Balm" data-ko="얼그레이 / 히비스커스 / 레몬밤"><div class="row"><div class="name">Earl Grey / Hibiscus / Lemon Balm</div><div class="price">6.0<small>HOT · ICE</small></div></div><div class="pick-row"><button class="qty-btn minus" type="button">−</button><div class="qty-box">0</div><button class="qty-btn plus" type="button">+</button></div></div>
+    </section>
+  </main>
+
+  <main id="summaryPage" class="page hidden">
+    <div class="topbar">
+      <button class="back-btn" type="button" id="backToMenu">← Back to menu</button>
+      <div class="lang-chip">선택 결과</div>
+    </div>
+
+    <section class="summary-card">
+      <div class="summary-title">선택한 메뉴</div>
+      <div class="summary-sub">영어 페이지에서 고른 메뉴를 한글로 정리해서 보여줍니다.</div>
+      <div id="summaryList" class="summary-list"></div>
+    </section>
+  </main>
+
+  <script>
+    const languagePage = document.getElementById('languagePage');
+    const englishPage = document.getElementById('englishPage');
+    const summaryPage = document.getElementById('summaryPage');
+    const summaryList = document.getElementById('summaryList');
+
+    document.getElementById('englishBtn').addEventListener('click', () => {
+      languagePage.classList.add('hidden');
+      summaryPage.classList.add('hidden');
+      englishPage.classList.remove('hidden');
+      window.scrollTo(0, 0);
+    });
+
+    document.getElementById('backToLanguage').addEventListener('click', () => {
+      englishPage.classList.add('hidden');
+      summaryPage.classList.add('hidden');
+      languagePage.classList.remove('hidden');
+      window.scrollTo(0, 0);
+    });
+
+    document.getElementById('backToMenu').addEventListener('click', () => {
+      summaryPage.classList.add('hidden');
+      englishPage.classList.remove('hidden');
+      window.scrollTo(0, 0);
+    });
+
+    document.querySelectorAll('.item').forEach(item => {
+      const minus = item.querySelector('.minus');
+      const plus = item.querySelector('.plus');
+      const qtyBox = item.querySelector('.qty-box');
+      let qty = 0;
+
+      plus.addEventListener('click', () => {
+        qty += 1;
+        qtyBox.textContent = qty;
+      });
+
+      minus.addEventListener('click', () => {
+        qty = Math.max(0, qty - 1);
+        qtyBox.textContent = qty;
+      });
+    });
+
+    document.getElementById('showSummaryBtn').addEventListener('click', () => {
+      const selected = [];
+
+      document.querySelectorAll('.item').forEach(item => {
+        const qty = Number(item.querySelector('.qty-box').textContent);
+        if (qty > 0) {
+          selected.push({
+            en: item.dataset.en,
+            ko: item.dataset.ko,
+            qty
+          });
+        }
+      });
+
+      summaryList.innerHTML = '';
+
+      if (selected.length === 0) {
+        summaryList.innerHTML = '<div class="empty-box">아직 선택한 메뉴가 없습니다.<br />영어 메뉴 화면에서 + 버튼으로 메뉴를 골라주세요.</div>';
+      } else {
+        selected.forEach(menu => {
+          const div = document.createElement('div');
+          div.className = 'summary-item';
+          div.innerHTML = `<strong>${menu.ko}</strong><span>${menu.en}</span><span>수량: ${menu.qty}</span>`;
+          summaryList.appendChild(div);
+        });
+      }
+
+      englishPage.classList.add('hidden');
+      summaryPage.classList.remove('hidden');
+      window.scrollTo(0, 0);
+    });
+  </script>
+</body>
+</html>
