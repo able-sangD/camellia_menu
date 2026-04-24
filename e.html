@@ -555,54 +555,68 @@ h1{
 </main>
 
 <script>
-document.querySelectorAll(".item").forEach(item=>{
-  const qty=item.querySelector(".qty");
-  const plus=item.querySelector(".plus");
-  const minus=item.querySelector(".minus");
+document.querySelectorAll(".item").forEach(item => {
+  const qty = item.querySelector(".qty");
+  const plus = item.querySelector(".plus");
+  const minus = item.querySelector(".minus");
 
-  plus.onclick=()=>qty.textContent=+qty.textContent+1;
-  minus.onclick=()=>qty.textContent=Math.max(0,+qty.textContent-1);
+  plus.addEventListener("click", () => {
+    qty.textContent = Number(qty.textContent) + 1;
+  });
 
-  item.querySelectorAll(".temp-group").forEach(group=>{
-    group.querySelectorAll(".temp-btn").forEach(btn=>{
-      if(btn.classList.contains("disabled")) return;
-      btn.onclick=()=>{
-        group.querySelectorAll(".temp-btn").forEach(b=>b.classList.remove("active"));
+  minus.addEventListener("click", () => {
+    qty.textContent = Math.max(0, Number(qty.textContent) - 1);
+  });
+
+  item.querySelectorAll(".temp-group").forEach(group => {
+    group.querySelectorAll(".temp-btn").forEach(btn => {
+      if (btn.classList.contains("disabled")) return;
+
+      btn.addEventListener("click", () => {
+        group.querySelectorAll(".temp-btn").forEach(b => b.classList.remove("active"));
         btn.classList.add("active");
-      };
+      });
     });
   });
 });
 
-document.getElementById("completeBtn").onclick=()=>{
-  const list=[];
+document.getElementById("completeBtn").addEventListener("click", () => {
+  const list = [];
 
-  document.querySelectorAll(".item").forEach(item=>{
-    const q=+item.querySelector(".qty").textContent;
-    if(q<1) return;
+  document.querySelectorAll(".item").forEach(item => {
+    const qtyEl = item.querySelector(".qty");
+    const q = Number(qtyEl.textContent);
 
-    const temp=item.querySelector(".temp-btn.active").textContent;
-    const name=item.dataset.ko;
-    const en=item.querySelector(".name").textContent;
+    if (q < 1) return;
+
+    const activeTemp = item.querySelector(".temp-group .temp-btn.active");
+    const temp = activeTemp ? activeTemp.textContent.trim() : "";
+
+    const name = item.dataset.ko;
+    const en = item.querySelector(".name").textContent.trim();
 
     list.push(`
       <div class="summary-item">
         <strong>${name}</strong>
         <span>${en}</span>
-        <span>온도 : ${temp}</span>
+        ${temp ? `<span>온도 : ${temp}</span>` : ""}
         <span>수량 : ${q}</span>
       </div>
     `);
   });
 
-  document.getElementById("summary").innerHTML=
-    list.length ? list.join("") : "No menu selected yet.";
+  const summary = document.getElementById("summary");
+
+  summary.classList.remove("empty");
+  summary.innerHTML = list.length
+    ? list.join("")
+    : `<div class="empty">No menu selected yet.</div>`;
 
   document.getElementById("summarySection").scrollIntoView({
-    behavior:"smooth",
-    block:"start"
+    behavior: "smooth",
+    block: "start"
   });
-};
+});
 </script>
 
 </body>
